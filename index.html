@@ -249,9 +249,13 @@
     .head h2::after{margin-top:12px}
   }
   @media (prefers-reduced-motion:reduce){
-    .js-reveal .rv{opacity:1;transform:none;transition:none}
+    .js-reveal .rv{transform:none}
     .card,.cc{transition:none}.card:hover,a.cc:hover{transform:none}
-  }
+  }@media (prefers-reduced-motion:no-preference){
+  @keyframes rise{from{opacity:0;transform:translateY(26px)}to{opacity:1;transform:none}}
+  .hero .wrap>div:first-child{animation:rise .8s ease both}
+  .hero-side{animation:rise .8s .15s ease both}
+}
 </style>
 </head>
 <body>
