@@ -1,0 +1,682 @@
+<!doctype html>
+<html lang="ms">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Pinjaman Peribadi Berlesen | Komuniti Utama</title>
+<meta name="description" content="Komuniti Utama: pemberi pinjam wang berlesen KPKT. Permohonan mudah, terma jelas dan perjanjian bertulis.">
+<link rel="icon" href="images/logo-small.jpg">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+<style>
+  :root{
+    --green-950:#04201a;--green-900:#07332a;--green-800:#0b4a3b;--green-700:#0f6650;
+    --gold:#d9a62e;--gold-dark:#b78518;--gold-soft:#f8c95a;
+    --ink:#10231e;--muted:#566660;--line:#e1e8e5;--bg:#ffffff;--bg-soft:#eff4f2;
+    --wa:#1fb65a;--red:#c8372d;
+    --shadow:0 10px 30px rgba(7,51,42,.09);
+  }
+  *{box-sizing:border-box}
+  html{scroll-behavior:smooth;scroll-padding-top:84px}
+  body{margin:0;font-family:Inter,system-ui,-apple-system,"Segoe UI",Arial,sans-serif;color:var(--ink);background:var(--bg);line-height:1.6;-webkit-font-smoothing:antialiased}
+  img{max-width:100%;height:auto;display:block}
+  a{color:inherit}
+  h1,h2,h3{line-height:1.2;margin:0}
+  ul{margin:0;padding:0;list-style:none}
+  svg.i{width:1.25em;height:1.25em;flex:none;fill:none;stroke:currentColor;stroke-width:2;stroke-linecap:round;stroke-linejoin:round}
+  .wrap{width:min(100% - 40px,1160px);margin-inline:auto}
+
+  /* Buttons */
+  .btn{display:inline-flex;align-items:center;justify-content:center;gap:.55em;padding:14px 26px;border-radius:10px;font-family:inherit;font-weight:700;font-size:1rem;line-height:1.2;text-decoration:none;border:1.5px solid transparent;cursor:pointer;transition:transform .15s,box-shadow .15s,background .15s}
+  .btn:hover{transform:translateY(-2px)}
+  .btn:focus-visible,a:focus-visible,button:focus-visible,summary:focus-visible{outline:3px solid var(--gold-soft);outline-offset:2px}
+  .btn-gold{background:var(--gold);color:#fff;box-shadow:0 8px 22px rgba(217,166,46,.32)}
+  .btn-gold:hover{background:var(--gold-dark)}
+  .btn-ghost{border-color:rgba(255,255,255,.4);color:#fff}
+  .btn-ghost:hover{background:rgba(255,255,255,.09)}
+  .btn-wa{background:var(--wa);color:#fff;width:100%}
+  .btn-outline{border-color:var(--green-800);color:var(--green-800);background:#fff}
+
+  /* Header */
+  header.top{position:sticky;top:0;z-index:30;background:#fff;box-shadow:0 1px 10px rgba(7,51,42,.09)}
+  header.top .wrap{display:flex;align-items:center;gap:20px;min-height:72px}
+  .brand{display:flex;align-items:center;gap:11px;text-decoration:none;font-weight:800;color:var(--green-900);margin-right:auto;line-height:1.15}
+  .brand img{width:48px;height:48px;border-radius:50%}
+  .brand small{display:block;font-size:.7rem;font-weight:500;color:var(--muted)}
+  nav.main{display:flex;gap:22px}
+  nav.main a{text-decoration:none;font-size:.92rem;font-weight:500;color:var(--green-900)}
+  nav.main a:hover{color:var(--gold-dark)}
+  .lang{display:flex;border:1.5px solid var(--green-800);border-radius:999px;overflow:hidden}
+  .lang button{border:0;background:#fff;color:var(--green-800);font-family:inherit;font-weight:700;font-size:.76rem;line-height:1;padding:8px 11px;cursor:pointer}
+  .lang button[aria-pressed=true]{background:var(--green-800);color:#fff}
+  header .btn{padding:11px 18px;font-size:.9rem}
+  .menu-btn{display:none;background:none;border:0;color:var(--green-900);font-size:1.3rem;padding:6px;cursor:pointer}
+
+  /* Hero */
+  .hero{background:radial-gradient(circle at 80% 15%,rgba(217,166,46,.17),transparent 42%),linear-gradient(135deg,var(--green-950),var(--green-800) 55%,var(--green-950));color:#fff;padding:76px 0 84px}
+  .hero .wrap{display:grid;grid-template-columns:1.25fr .75fr;gap:48px;align-items:center}
+  .chips{display:flex;flex-wrap:wrap;gap:9px;margin-bottom:22px}
+  .chip{display:inline-flex;align-items:center;gap:6px;padding:6px 13px;border-radius:999px;border:1px solid rgba(248,201,90,.4);background:rgba(255,255,255,.07);color:var(--gold-soft);font-size:.82rem;font-weight:500}
+  .hero h1{font-size:clamp(2.4rem,5.4vw,4rem);font-weight:800;letter-spacing:-.02em}
+  .tagline{color:var(--gold-soft);font-size:clamp(1.1rem,2vw,1.35rem);font-weight:700;margin:14px 0 16px}
+  .lead{color:#d3e0db;font-size:1.05rem;max-width:58ch;margin:0 0 28px}
+  .cta{display:flex;flex-wrap:wrap;gap:13px}
+  .income{padding:20px;border-radius:14px;background:rgba(248,201,90,.1);border:1px solid rgba(248,201,90,.4)}
+  .income b{display:block;color:#fff;font-weight:600;margin-bottom:12px}
+  .income ul{display:flex;flex-wrap:wrap;gap:8px}
+  .income li{padding:5px 13px;border-radius:999px;background:linear-gradient(135deg,#f6cf63,#d39c22);color:var(--green-950);font-size:.86rem;font-weight:700}
+  .lic{margin-top:22px;padding:13px 16px;border-radius:12px;background:rgba(255,255,255,.08);border:1px solid rgba(255,255,255,.17);font-size:.84rem;text-align:left}
+  .lic div+div{margin-top:5px}
+  .lic b{color:var(--gold-soft);font-weight:600}
+
+  /* Sections */
+  section{padding:80px 0}
+  .soft{background:var(--bg-soft)}
+  .head{text-align:center;margin-bottom:46px}
+  .head h2{font-size:clamp(1.8rem,3.4vw,2.5rem);font-weight:800;color:var(--green-900);letter-spacing:-.01em}
+  .head p{color:var(--muted);margin:9px auto 0;max-width:62ch}
+  .grid3{display:grid;grid-template-columns:repeat(3,1fr);gap:22px}
+  .card{background:#fff;border:1px solid var(--line);border-radius:16px;padding:28px;box-shadow:var(--shadow)}
+  .card h3{font-size:1.14rem;color:var(--green-900);margin-bottom:8px}
+  .card p{color:var(--muted);margin:0;font-size:.95rem}
+  .ico{display:grid;place-items:center;width:50px;height:50px;border-radius:13px;background:#fbf2d9;color:var(--gold-dark);font-size:1.15rem;margin-bottom:16px}
+
+  /* How we help */
+  .feat{display:grid;grid-template-columns:repeat(4,1fr);gap:13px;margin-bottom:32px}
+  .feat li{display:flex;align-items:center;gap:11px;background:#fff;border:1px solid var(--line);padding:14px;border-radius:12px;font-weight:600;font-size:.92rem;color:var(--green-900)}
+  .feat svg{color:var(--gold-dark)}
+
+  /* Steps */
+  .steps{display:grid;grid-template-columns:repeat(4,1fr);gap:20px;position:relative;margin-bottom:46px;counter-reset:s}
+  .steps li{background:var(--bg-soft);border-radius:14px;padding:24px 18px;text-align:center;counter-increment:s}
+  .steps li::before{content:counter(s);display:grid;place-items:center;width:42px;height:42px;margin:0 auto 12px;border-radius:50%;background:var(--gold);color:#fff;font-weight:800}
+  .steps h3{font-size:1rem;color:var(--green-900);margin-bottom:5px}
+  .steps p{margin:0;font-size:.88rem;color:var(--muted)}
+  .req h3{display:flex;align-items:center;gap:9px;margin-bottom:15px}
+  .req li{display:flex;gap:9px;padding:6px 0;font-size:.94rem}
+  .req li svg{margin-top:.2em}
+  .r-ok{background:#ecf8f2;border-color:#c8eadb}.r-ok svg{color:var(--green-700)}
+  .r-doc{background:#fff9e8;border-color:#f4e4b4}.r-doc svg{color:var(--gold-dark)}
+  .r-no{background:#fdf0ee;border-color:#f7d4d0}.r-no svg{color:var(--red)}
+
+  /* Form */
+  .apply{background:linear-gradient(135deg,var(--green-950),var(--green-800));color:#fff}
+  .apply .head h2{color:#fff}.apply .head p{color:#d3e0db}
+  form{background:#fff;color:var(--ink);max-width:620px;margin-inline:auto;padding:32px;border-radius:18px;box-shadow:0 24px 60px rgba(0,0,0,.3)}
+  label.f{display:block;font-weight:600;font-size:.9rem;margin-bottom:17px}
+  label.f input,label.f select{display:block;width:100%;margin-top:6px;padding:13px 14px;border:1.5px solid #cfd9d5;border-radius:10px;font-family:inherit;font-weight:400;font-size:1rem;background:#fff;color:var(--ink)}
+  label.f input:focus,label.f select:focus{outline:0;border-color:var(--green-700);box-shadow:0 0 0 3px rgba(15,102,80,.15)}
+  .two-f{display:grid;grid-template-columns:1fr 1fr;gap:0 15px}
+  .consent{display:flex;gap:9px;font-size:.85rem;color:var(--muted);margin-bottom:18px}
+  .consent input{margin-top:4px;flex:none}
+  .form-note{font-size:.8rem;color:var(--muted);margin:13px 0 0}
+  .status{font-size:.86rem;margin:12px 0 0;padding:10px 12px;border-radius:8px;background:#fff9e8;white-space:pre-line}
+  .status:empty{display:none}
+
+  /* FAQ */
+  .faq{max-width:800px;margin-inline:auto}
+  details{background:#fff;border:1px solid var(--line);border-radius:12px;margin-bottom:11px}
+  summary{cursor:pointer;padding:17px 20px;font-weight:600;color:var(--green-900);list-style:none;display:flex;justify-content:space-between;gap:14px}
+  summary::-webkit-details-marker{display:none}
+  summary::after{content:"+";font-size:1.3rem;line-height:1;color:var(--gold-dark)}
+  details[open] summary::after{content:"\2212"}
+  details p{margin:0;padding:0 20px 18px;color:var(--muted)}
+
+  /* Contact */
+  .contact{display:grid;grid-template-columns:1fr 1fr;gap:22px}
+  .cc{display:flex;gap:15px;align-items:center;border-radius:14px;padding:19px 22px;margin-bottom:13px;text-decoration:none;background:#fff;box-shadow:var(--shadow)}
+  .cc svg{font-size:1.25rem}
+  .cc b{display:block}
+  .cc span{font-size:.9rem}
+  .cc.wa{background:var(--wa);color:#fff}
+  .cc.mail{background:var(--gold);color:#fff}
+  .cc.plain{align-items:flex-start}.cc.plain>svg{color:var(--gold-dark);margin-top:2px}
+  .hours{width:100%;font-size:.9rem}
+  .hours div{display:flex;justify-content:space-between;gap:14px;padding:2px 0}
+  .map{background:#fff;border-radius:14px;overflow:hidden;box-shadow:var(--shadow);display:flex;flex-direction:column}
+  .map h3{background:var(--green-900);color:#fff;font-size:1rem;padding:15px 20px}
+  .map-body{flex:1;display:flex;flex-direction:column;align-items:center;gap:15px;padding:0 0 18px;background:#fff}
+  .map-body iframe{flex:1;width:100%;min-height:330px;border:0;display:block}
+
+  /* Footer */
+  footer{background:var(--green-950);color:#c3d2cd;padding:58px 0 26px;font-size:.92rem}
+  .f-grid{display:grid;grid-template-columns:1.3fr 1fr 1.3fr;gap:38px}
+  footer h3{color:#fff;font-size:1rem;margin-bottom:13px}
+  footer a{color:#c3d2cd}
+  footer li{padding:3px 0}
+  footer dl{margin:0;display:grid;grid-template-columns:auto 1fr;gap:5px 13px}
+  footer dt{color:#8fa59e}footer dd{margin:0}
+  .warn{margin:32px 0 0;padding:14px 17px;border-radius:10px;background:rgba(248,201,90,.1);border:1px solid rgba(248,201,90,.3);color:#f6dfa6;font-size:.86rem}
+  .copy{margin-top:22px;padding-top:18px;border-top:1px solid rgba(255,255,255,.12);font-size:.8rem;color:#8fa59e}
+
+  .float{position:fixed;right:18px;bottom:18px;z-index:40;display:grid;place-items:center;width:56px;height:56px;border-radius:50%;background:var(--wa);color:#fff;font-size:1.25rem;box-shadow:0 8px 22px rgba(0,0,0,.28)}
+
+  @media (max-width:980px){
+    nav.main{display:none;position:absolute;top:100%;left:0;right:0;background:#fff;flex-direction:column;gap:0;box-shadow:0 10px 20px rgba(7,51,42,.12)}
+    nav.main.open{display:flex}
+    nav.main a{padding:14px 20px;border-top:1px solid var(--line)}
+    .menu-btn{display:block}
+    header .btn{display:none}
+    .hero{padding:48px 0 58px}
+    .hero .wrap{grid-template-columns:1fr;gap:32px}
+    .grid3,.contact{grid-template-columns:1fr}
+    .steps{grid-template-columns:1fr 1fr}
+    .feat{grid-template-columns:1fr 1fr}
+    .f-grid{grid-template-columns:1fr}
+  }
+  @media (max-width:560px){
+    section{padding:56px 0}
+    .brand small{display:none}
+    .cta .btn{width:100%}
+    .feat,.two-f,.steps{grid-template-columns:1fr}
+    form{padding:22px}
+    .cc{padding:16px}
+    .cc span{overflow-wrap:anywhere}
+  }
+  @media (prefers-reduced-motion:reduce){html{scroll-behavior:auto}.btn{transition:none}.btn:hover{transform:none}}
+
+  /* ---------- Premium layer ---------- */
+
+  .btn-gold{background:linear-gradient(135deg,#f6cf63,#d39c22);color:var(--green-950);box-shadow:0 10px 26px rgba(217,166,46,.38)}
+  .btn-gold:hover{background:linear-gradient(135deg,#fbd976,#dba62c);box-shadow:0 14px 32px rgba(217,166,46,.48)}
+  .btn-outline:hover{background:var(--green-800);color:#fff}
+
+  .hero{position:relative;overflow:hidden;padding:84px 0 132px;background:radial-gradient(circle at 78% 30%,rgba(248,201,90,.2),transparent 40%),radial-gradient(circle at 8% 90%,rgba(15,102,80,.55),transparent 45%),linear-gradient(135deg,#031a15,var(--green-900) 55%,#031a15)}
+  .hero::before{content:"";position:absolute;inset:0;background-image:radial-gradient(rgba(248,201,90,.13) 1px,transparent 1px);background-size:26px 26px;-webkit-mask-image:linear-gradient(100deg,transparent 35%,#000);mask-image:linear-gradient(100deg,transparent 35%,#000)}
+  .hero .wrap{position:relative}
+  .hero h1{background:linear-gradient(180deg,#fff 55%,#f3e2b4);-webkit-background-clip:text;background-clip:text;color:transparent}
+  .chip{background:rgba(248,201,90,.1);backdrop-filter:blur(4px)}
+  .lic{background:rgba(3,26,21,.55);border-color:rgba(248,201,90,.35);backdrop-filter:blur(4px)}
+
+  /* Trust band overlapping the hero */
+  .trust{position:relative;z-index:2;margin-top:-62px}
+  .trust ul{display:grid;grid-template-columns:repeat(4,1fr);background:#fff;border-radius:18px;box-shadow:0 22px 50px rgba(7,51,42,.17);overflow:hidden}
+  .trust li{display:flex;align-items:center;gap:13px;padding:23px 22px}
+  .trust li+li{border-left:1px solid var(--line)}
+  .trust svg{font-size:1.2rem;color:var(--gold-dark)}
+  .trust b{display:block;color:var(--green-900);font-size:.95rem;line-height:1.25}
+  .trust span{font-size:.8rem;color:var(--muted);line-height:1.3;display:block}
+
+  .head h2::after{content:"";display:block;width:58px;height:4px;margin:15px auto 0;border-radius:2px;background:linear-gradient(90deg,#f6cf63,#c8921c)}
+  .apply .head h2::after{background:var(--gold-soft)}
+
+  .card{transition:transform .2s,box-shadow .2s,border-color .2s}
+  .card:hover{transform:translateY(-5px);box-shadow:0 20px 42px rgba(7,51,42,.15);border-color:rgba(217,166,46,.55)}
+  .ico{background:linear-gradient(135deg,var(--green-800),var(--green-950));color:var(--gold-soft);box-shadow:0 8px 18px rgba(7,51,42,.24)}
+
+  /* Connected steps */
+  .steps li{background:none;padding:0 12px;position:relative}
+  .steps::before{content:"";position:absolute;top:24px;left:12.5%;right:12.5%;height:2px;background:linear-gradient(90deg,var(--gold),var(--green-700))}
+  .steps li::before{position:relative;width:50px;height:50px;font-size:1.1rem;background:linear-gradient(135deg,#f6cf63,#c8921c);color:var(--green-950);box-shadow:0 0 0 7px #fff,0 8px 18px rgba(217,166,46,.4)}
+
+  form{border-top:5px solid var(--gold)}
+  .feat svg{color:var(--green-700)}
+  .cc{transition:transform .15s}
+  a.cc:hover{transform:translateY(-3px)}
+  .cc.wa{background:linear-gradient(135deg,#27c766,#169a4b)}
+  .cc.mail{background:linear-gradient(135deg,#f6cf63,#d39c22);color:var(--green-950)}
+  .floats{position:fixed;right:18px;bottom:18px;z-index:40;display:flex;flex-direction:column;align-items:center;gap:11px}
+  .float{position:static;width:50px;height:50px;font-size:1.15rem;text-decoration:none;transition:transform .15s;box-shadow:0 8px 20px rgba(0,0,0,.28)}
+  .float:hover{transform:scale(1.08)}
+  .float.f-wa{width:58px;height:58px;font-size:1.5rem;background:#25d366;box-shadow:0 0 0 6px rgba(37,211,102,.2),0 8px 22px rgba(0,0,0,.28)}
+  .f-fb{background:#1877f2;color:#fff}
+  .f-ig{background:linear-gradient(45deg,#f58529,#dd2a7b 55%,#8134af);color:#fff}
+  .f-tt{background:#000;color:#fff}
+  .socials{margin-top:20px}
+  .socials div{display:flex;gap:10px}
+  .socials a{display:grid;place-items:center;width:40px;height:40px;border-radius:50%;color:#fff;transition:transform .15s}
+  .socials a:hover{transform:translateY(-2px)}
+  @media (max-width:560px){
+    .floats{right:12px;bottom:12px;gap:9px}
+    .float{width:44px;height:44px;font-size:1rem}
+    .float.f-wa{width:52px;height:52px;font-size:1.35rem}
+  }
+
+  /* Scroll reveal: only hidden once JS has marked the page */
+  .js-reveal .rv{opacity:0;transform:translateY(22px);transition:opacity .55s ease,transform .55s ease}
+  .js-reveal .rv.in{opacity:1;transform:none}
+
+  @media (max-width:980px){
+    .hero{padding:48px 0 104px}
+    .trust ul{grid-template-columns:1fr 1fr}
+    .trust li:nth-child(3){border-left:0}
+    .trust li:nth-child(n+3){border-top:1px solid var(--line)}
+    .trust li{padding:17px 15px}
+    .steps::before{display:none}
+    .steps li{background:var(--bg-soft);border-radius:14px;padding:22px 16px}
+    .steps li::before{box-shadow:0 8px 18px rgba(217,166,46,.4)}
+    .head h2::after{margin-top:12px}
+  }
+  @media (prefers-reduced-motion:reduce){
+    .js-reveal .rv{opacity:1;transform:none;transition:none}
+    .card,.cc{transition:none}.card:hover,a.cc:hover{transform:none}
+  }
+</style>
+</head>
+<body>
+
+<svg width="0" height="0" style="position:absolute" aria-hidden="true">
+  <symbol id="check" viewBox="0 0 24 24"><path d="M20 6 9 17l-5-5"/></symbol>
+  <symbol id="x" viewBox="0 0 24 24"><path d="M18 6 6 18M6 6l12 12"/></symbol>
+  <symbol id="shield" viewBox="0 0 24 24"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/><path d="m9 12 2 2 4-4"/></symbol>
+  <symbol id="wallet" viewBox="0 0 24 24"><path d="M20 7H5a2 2 0 0 1 0-4h13v4"/><path d="M3 5v14a2 2 0 0 0 2 2h15V7"/><path d="M16 14h.01"/></symbol>
+  <symbol id="form" viewBox="0 0 24 24"><path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"/><path d="M14 2v6h6M8 13h8M8 17h6"/></symbol>
+  <symbol id="clock" viewBox="0 0 24 24"><circle cx="12" cy="12" r="10"/><path d="M12 6v6l4 2"/></symbol>
+  <symbol id="pin" viewBox="0 0 24 24"><path d="M20 10c0 6-8 12-8 12s-8-6-8-12a8 8 0 0 1 16 0z"/><circle cx="12" cy="10" r="3"/></symbol>
+  <symbol id="mail" viewBox="0 0 24 24"><rect x="2" y="4" width="20" height="16" rx="2"/><path d="m22 7-10 6L2 7"/></symbol>
+  <symbol id="chat" viewBox="0 0 24 24"><path fill="currentColor" stroke="none" d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413z"/></symbol>
+  <symbol id="facebook" viewBox="0 0 24 24"><path fill="currentColor" stroke="none" d="M24 12.073c0-6.627-5.373-12-12-12s-12 5.373-12 12c0 5.99 4.388 10.954 10.125 11.854v-8.385H7.078v-3.47h3.047V9.43c0-3.007 1.792-4.669 4.533-4.669 1.312 0 2.686.235 2.686.235v2.953H15.83c-1.491 0-1.956.925-1.956 1.874v2.25h3.328l-.532 3.47h-2.796v8.385C19.612 23.027 24 18.062 24 12.073z"/></symbol>
+  <symbol id="instagram" viewBox="0 0 24 24"><rect x="2.5" y="2.5" width="19" height="19" rx="5.5"/><circle cx="12" cy="12" r="4.4"/><circle cx="17.6" cy="6.4" r="1.2" fill="currentColor" stroke="none"/></symbol>
+  <symbol id="tiktok" viewBox="0 0 24 24"><path fill="currentColor" stroke="none" d="M12.525.02c1.31-.02 2.61-.01 3.91-.02.08 1.53.63 3.09 1.75 4.17 1.12 1.11 2.7 1.62 4.24 1.79v4.03c-1.44-.05-2.89-.35-4.2-.97-.57-.26-1.1-.59-1.62-.93-.01 2.92.01 5.84-.02 8.75-.08 1.4-.54 2.79-1.35 3.94-1.31 1.92-3.58 3.17-5.91 3.21-1.43.08-2.86-.31-4.08-1.03-2.02-1.19-3.44-3.37-3.65-5.71-.02-.5-.03-1-.01-1.49.18-1.9 1.12-3.72 2.58-4.96 1.66-1.44 3.98-2.13 6.15-1.72.02 1.48-.04 2.96-.04 4.44-.99-.32-2.15-.23-3.02.37-.63.41-1.11 1.04-1.36 1.75-.21.51-.15 1.07-.14 1.61.24 1.64 1.82 3.02 3.5 2.87 1.12-.01 2.19-.66 2.77-1.61.19-.33.4-.67.41-1.06.1-1.79.06-3.57.07-5.36.01-4.03-.01-8.05.02-12.07z"/></symbol>
+  <symbol id="percent" viewBox="0 0 24 24"><path d="M19 5 5 19"/><circle cx="6.5" cy="6.5" r="2.5"/><circle cx="17.5" cy="17.5" r="2.5"/></symbol>
+  <symbol id="ban" viewBox="0 0 24 24"><circle cx="12" cy="12" r="10"/><path d="m4.9 4.9 14.2 14.2"/></symbol>
+  <symbol id="users" viewBox="0 0 24 24"><path d="M16 21v-2a4 4 0 0 0-4-4H6a4 4 0 0 0-4 4v2"/><circle cx="9" cy="7" r="4"/><path d="M22 21v-2a4 4 0 0 0-3-3.9M16 3.1a4 4 0 0 1 0 7.8"/></symbol>
+  <symbol id="menu" viewBox="0 0 24 24"><path d="M4 6h16M4 12h16M4 18h16"/></symbol>
+</svg>
+
+<header class="top">
+  <div class="wrap">
+    <a class="brand" href="#">
+      <img src="images/logo-small.jpg" alt="Logo Komuniti Utama" width="48" height="48">
+      <span>Komuniti Utama Sdn Bhd<small data-en="Licensed moneylender (KPKT)">Pemberi pinjam wang berlesen KPKT</small></span>
+    </a>
+    <nav class="main" id="nav" aria-label="Menu">
+      <a href="#perkhidmatan" data-en="Services">Perkhidmatan</a>
+      <a href="#syarat" data-en="Requirements">Syarat</a>
+      <a href="#soalan" data-en="FAQ">Soalan Lazim</a>
+      <a href="#hubungi" data-en="Contact">Hubungi Kami</a>
+    </nav>
+    <div class="lang" role="group" aria-label="Bahasa / Language">
+      <button type="button" data-l="ms" aria-pressed="true">BM</button>
+      <button type="button" data-l="en" aria-pressed="false">EN</button>
+    </div>
+    <a class="btn btn-gold" href="#borang" data-en="Apply now">Mohon Sekarang</a>
+    <button class="menu-btn" type="button" aria-label="Menu" aria-expanded="false" aria-controls="nav"><svg class="i"><use href="#menu"/></svg></button>
+  </div>
+</header>
+
+<main>
+<div class="hero">
+  <div class="wrap">
+    <div>
+      <div class="chips">
+        <span class="chip"><svg class="i"><use href="#check"/></svg><span data-en="KPKT licensed">Berlesen KPKT</span></span>
+        <span class="chip"><svg class="i"><use href="#check"/></svg><span data-en="Easy process">Proses Mudah</span></span>
+        <span class="chip"><svg class="i"><use href="#check"/></svg><span data-en="Written agreement">Perjanjian Bertulis</span></span>
+      </div>
+      <h1 data-en="Licensed Personal Loans">Pinjaman Peribadi Berlesen</h1>
+      <p class="tagline" data-en="Easy Process. Clear Terms. Friendly Service.">Proses Mudah. Terma Jelas. Layanan Mesra.</p>
+      <p class="lead" data-en="Komuniti Utama Sdn Bhd is a licensed moneylender in Rawang, Selangor. Send your application online or visit our office, and we will explain the rate, terms and total repayment before you decide.">Komuniti Utama Sdn Bhd ialah pemberi pinjam wang berlesen di Rawang, Selangor. Hantar permohonan secara online atau datang ke pejabat kami, dan kami akan terangkan kadar, terma serta jumlah bayaran balik sebelum anda membuat keputusan.</p>
+      <div class="cta">
+        <a class="btn btn-gold" href="#borang" data-en="Apply now">Mohon Sekarang</a>
+        <a class="btn btn-ghost" href="#hubungi" data-en="Contact us">Hubungi Kami</a>
+      </div>
+    </div>
+    <div class="hero-side">
+      <div class="income">
+        <b data-en="We accept various income sources, including:">Kami menerima pelbagai sumber pendapatan termasuk:</b>
+        <ul>
+          <li>Zakat</li><li>JKM</li><li>Baitulmal</li><li>PERKESO</li><li data-en="Pension">Pencen</li><li data-en="Allocations">Peruntukan</li>
+        </ul>
+      </div>
+      <div class="lic">
+        <div><b data-en="KPKT licence no.:">No. lesen KPKT:</b> WL7352/10/01-4/270228</div>
+        <div><b data-en="Advertisement permit:">Permit iklan:</b> WL7352/10/01-4/270228</div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<div class="trust">
+  <div class="wrap">
+    <ul>
+      <li><svg class="i"><use href="#shield"/></svg><div><b data-en="KPKT licensed">Berlesen KPKT</b><span data-en="Licence no. shown">No. lesen dipaparkan</span></div></li>
+      <li><svg class="i"><use href="#percent"/></svg><div><b data-en="Clear rates">Kadar Jelas</b><span data-en="Explained before signing">Diterangkan sebelum tandatangan</span></div></li>
+      <li><svg class="i"><use href="#ban"/></svg><div><b data-en="No upfront fee">Tiada Bayaran Dahulu</b><span data-en="Nothing to pay first">Tiada bayaran pendahuluan</span></div></li>
+      <li><svg class="i"><use href="#users"/></svg><div><b data-en="Friendly service">Layanan Mesra</b><span data-en="Online or walk-in">Online atau walk-in</span></div></li>
+    </ul>
+  </div>
+</div>
+
+<section id="perkhidmatan">
+  <div class="wrap">
+    <div class="head">
+      <h2 data-en="Our Services">Perkhidmatan Kami</h2>
+      <p data-en="A financing option explained clearly, from the first enquiry to the signed agreement">Pilihan pembiayaan yang diterangkan dengan jelas, dari pertanyaan pertama hingga perjanjian ditandatangani</p>
+    </div>
+    <div class="grid3">
+      <article class="card">
+        <div class="ico"><svg class="i"><use href="#wallet"/></svg></div>
+        <h3 data-en="Personal Financing">Pembiayaan Peribadi</h3>
+        <p data-en="Licensed personal loans for needs such as medical costs, education, home repairs and vehicles.">Pinjaman peribadi berlesen untuk keperluan seperti perubatan, pendidikan, pembaikan rumah dan kenderaan.</p>
+      </article>
+      <article class="card">
+        <div class="ico"><svg class="i"><use href="#form"/></svg></div>
+        <h3 data-en="Simple Application">Permohonan Mudah</h3>
+        <p data-en="Fill in a short form or walk in to our office. We tell you exactly which documents you need.">Isi borang ringkas atau datang terus ke pejabat kami. Kami akan maklumkan dokumen yang diperlukan.</p>
+      </article>
+      <article class="card">
+        <div class="ico"><svg class="i"><use href="#clock"/></svg></div>
+        <h3 data-en="24-Hour Processing">Proses 24 Jam</h3>
+        <p data-en="Applications are processed within 24 hours on working days. All loans are subject to assessment and approval.">Permohonan diproses dalam masa 24 jam pada hari bekerja. Semua pinjaman tertakluk kepada penilaian dan kelulusan.</p>
+      </article>
+    </div>
+  </div>
+</section>
+
+<section id="bantuan" class="soft">
+  <div class="wrap">
+    <div class="head">
+      <h2 data-en="How We Can Help You">Bagaimana Kami Membantu Anda</h2>
+      <p data-en="Apply online or come straight to our licensed office in Rawang. Everything is explained before you sign.">Mohon secara online atau datang terus ke pejabat berlesen kami di Rawang. Semuanya diterangkan sebelum anda menandatangani.</p>
+    </div>
+      <ul class="feat">
+        <li><svg class="i"><use href="#form"/></svg><span data-en="Online application">Permohonan Online</span></li>
+        <li><svg class="i"><use href="#pin"/></svg><span data-en="Walk in to our office">Walk-in di Pejabat</span></li>
+        <li><svg class="i"><use href="#percent"/></svg><span data-en="Rate stated clearly">Kadar Dinyatakan Jelas</span></li>
+        <li><svg class="i"><use href="#shield"/></svg><span data-en="Written agreement">Perjanjian Bertulis</span></li>
+      </ul>
+    <div style="text-align:center"><a class="btn btn-gold" href="#borang" data-en="Apply now">Mohon Sekarang</a></div>
+  </div>
+</section>
+
+<section id="syarat">
+  <div class="wrap">
+    <div class="head">
+      <h2 data-en="Application Requirements">Syarat Permohonan</h2>
+      <p data-en="Four simple steps, and what you need to prepare">Empat langkah mudah dan perkara yang perlu disediakan</p>
+    </div>
+    <ol class="steps" style="list-style:none;padding:0">
+      <li><h3 data-en="Fill in the form">Isi Borang</h3><p data-en="Send the form online or come to our office">Hantar borang secara online atau datang ke pejabat kami</p></li>
+      <li><h3 data-en="Submit documents">Hantar Dokumen</h3><p data-en="We contact you and confirm the documents needed">Kami hubungi anda dan sahkan dokumen yang diperlukan</p></li>
+      <li><h3 data-en="Assessment and terms">Penilaian &amp; Terma</h3><p data-en="We explain the rate, terms and total repayment">Kami terangkan kadar, terma dan jumlah bayaran balik</p></li>
+      <li><h3 data-en="Sign and receive">Tandatangan &amp; Terima</h3><p data-en="Once approved, sign the agreement and receive the money">Setelah diluluskan, tandatangani perjanjian dan terima wang</p></li>
+    </ol>
+    <div class="grid3 req">
+      <div class="card r-ok">
+        <h3><svg class="i"><use href="#check"/></svg><span data-en="Eligibility">Kelayakan</span></h3>
+        <ul>
+          <li><svg class="i"><use href="#check"/></svg><span data-en="Malaysian citizen">Warganegara Malaysia</span></li>
+          <li><svg class="i"><use href="#check"/></svg><span data-en="Aged 18 to 70 years">Berumur 18 hingga 70 tahun</span></li>
+          <li><svg class="i"><use href="#check"/></svg><span data-en="Minimum monthly income RM 1,500">Pendapatan bulanan minimum RM 1,500</span></li>
+          <li><svg class="i"><use href="#check"/></svg><span data-en="Employees, or income from Zakat, JKM, Baitulmal, PERKESO, pension or allocations">Pekerja, atau pendapatan daripada Zakat, JKM, Baitulmal, PERKESO, pencen atau peruntukan</span></li>
+        </ul>
+      </div>
+      <div class="card r-doc">
+        <h3><svg class="i"><use href="#form"/></svg><span data-en="Documents needed">Dokumen Diperlukan</span></h3>
+        <ul>
+          <li><svg class="i"><use href="#check"/></svg><span data-en="Malaysian MyKad">Kad Pengenalan Malaysia (MyKad)</span></li>
+          <li><svg class="i"><use href="#check"/></svg><span data-en="Latest 3 months' payslips">Slip gaji 3 bulan terkini</span></li>
+          <li><svg class="i"><use href="#check"/></svg><span data-en="Latest 3 months' bank statements">Penyata bank 3 bulan terkini</span></li>
+          <li><svg class="i"><use href="#check"/></svg><span data-en="Latest utility bill">Bil utiliti terkini</span></li>
+          <li><svg class="i"><use href="#check"/></svg><span data-en="Proof of other income, if any">Bukti pendapatan lain, jika ada</span></li>
+        </ul>
+      </div>
+      <div class="card r-no">
+        <h3><svg class="i"><use href="#ban"/></svg><span data-en="Not accepted">Tidak Diterima</span></h3>
+        <ul>
+          <li><svg class="i"><use href="#x"/></svg><span data-en="Cash salary / cash advance">Tunai gaji / cash advance</span></li>
+          <li><svg class="i"><use href="#x"/></svg><span data-en="Business loans">Perniagaan</span></li>
+          <li><svg class="i"><use href="#x"/></svg><span data-en="Blacklisted applicants">Pemohon senarai hitam</span></li>
+        </ul>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section id="borang" class="apply">
+  <div class="wrap">
+    <div class="head">
+      <h2 data-en="Application Form">Borang Permohonan</h2>
+      <p data-en="Fill in your details and send them to us on WhatsApp">Isi maklumat anda dan hantar kepada kami melalui WhatsApp</p>
+    </div>
+    <form id="apply-form">
+      <label class="f"><span data-en="Full name">Nama Penuh</span>
+        <input name="nama" autocomplete="name" required maxlength="100">
+      </label>
+      <label class="f"><span data-en="Phone no.">No. Telefon</span>
+        <input name="telefon" type="tel" autocomplete="tel" placeholder="01X-XXXXXXX" required pattern="[0-9+\- ]{9,15}">
+      </label>
+      <div class="two-f">
+        <label class="f"><span data-en="Occupation">Pekerjaan</span>
+          <select name="pekerjaan" required>
+            <option value="" data-en="Choose">Pilih</option>
+            <option value="Pekerja Kerajaan" data-en="Government employee">Pekerja Kerajaan</option>
+            <option value="Pekerja Swasta" data-en="Private employee">Pekerja Swasta</option>
+            <option value="Pencen" data-en="Pensioner">Pencen</option>
+            <option value="PERKESO" data-en="PERKESO (SOCSO)">PERKESO (SOCSO)</option>
+            <option value="Penerima Zakat" data-en="Zakat recipient">Penerima Zakat</option>
+            <option value="JKM" data-en="JKM (Welfare)">JKM (Kebajikan)</option>
+            <option value="Baitulmal">Baitulmal</option>
+            <option value="Peruntukan" data-en="Allocations">Peruntukan</option>
+            <option value="Lain-lain" data-en="Other">Lain-lain</option>
+          </select>
+        </label>
+        <label class="f"><span data-en="State">Negeri</span>
+          <select name="negeri" required>
+            <option value="" data-en="Choose">Pilih</option>
+            <option>Johor</option><option>Kedah</option><option>Kelantan</option><option>Kuala Lumpur</option><option>Labuan</option><option>Melaka</option><option>Negeri Sembilan</option><option>Pahang</option><option>Perak</option><option>Perlis</option><option>Pulau Pinang</option><option>Putrajaya</option><option>Sabah</option><option>Sarawak</option><option>Selangor</option><option>Terengganu</option>
+          </select>
+        </label>
+      </div>
+      <label class="f"><span data-en="Loan amount needed">Jumlah Pinjaman Diperlukan</span>
+        <select name="jumlah" required id="jumlah">
+          <option value="" data-en="Choose amount">Pilih jumlah</option>
+        </select>
+      </label>
+      <label class="consent">
+        <input type="checkbox" name="setuju" required>
+        <span data-en="I agree that my details are used to answer this application, as set out in the <a href='privasi.html'>Privacy Notice</a>.">Saya bersetuju maklumat saya digunakan untuk menjawab permohonan ini, seperti dalam <a href="privasi.html">Notis Privasi</a>.</span>
+      </label>
+      <button class="btn btn-wa" type="submit"><svg class="i"><use href="#chat"/></svg><span data-en="Send via WhatsApp">Hantar via WhatsApp</span></button>
+      <p class="form-note" data-en="Never share bank account numbers, passwords or OTP codes. Licensed moneylenders may not charge an upfront fee.">Jangan kongsi nombor akaun bank, kata laluan atau kod OTP. Pemberi pinjam berlesen tidak boleh mengenakan bayaran pendahuluan.</p>
+      <p class="status" id="status" role="status"></p>
+    </form>
+  </div>
+</section>
+
+<section id="kenapa" class="soft">
+  <div class="wrap">
+    <div class="head">
+      <h2 data-en="Why Choose Komuniti Utama?">Kenapa Pilih Komuniti Utama?</h2>
+    </div>
+    <div class="grid3">
+      <article class="card"><div class="ico"><svg class="i"><use href="#shield"/></svg></div><h3 data-en="KPKT licensed">Berlesen KPKT</h3><p data-en="Check our licence number with KPKT before you deal with us.">Semak nombor lesen kami dengan KPKT sebelum berurusan.</p></article>
+      <article class="card"><div class="ico"><svg class="i"><use href="#percent"/></svg></div><h3 data-en="Clear rates">Kadar Yang Jelas</h3><p data-en="You see the interest rate and total repayment before you sign.">Anda melihat kadar faedah dan jumlah bayaran balik sebelum menandatangani.</p></article>
+      <article class="card"><div class="ico"><svg class="i"><use href="#ban"/></svg></div><h3 data-en="No upfront fee">Tiada Bayaran Pendahuluan</h3><p data-en="We never ask you to pay anything before the loan is released.">Kami tidak meminta sebarang bayaran sebelum pinjaman dikeluarkan.</p></article>
+      <article class="card"><div class="ico"><svg class="i"><use href="#form"/></svg></div><h3 data-en="Written agreement">Perjanjian Bertulis</h3><p data-en="You sign a stamped written agreement and keep your own copy.">Anda menandatangani perjanjian bertulis yang dicop dan menyimpan salinannya.</p></article>
+      <article class="card"><div class="ico"><svg class="i"><use href="#pin"/></svg></div><h3 data-en="Registered office">Pejabat Berdaftar</h3><p data-en="Deal with us face to face at our registered premises.">Berurusan secara bersemuka di premis berdaftar kami.</p></article>
+      <article class="card"><div class="ico"><svg class="i"><use href="#users"/></svg></div><h3 data-en="Friendly service">Layanan Mesra</h3><p data-en="Our team answers your questions in plain language.">Pasukan kami menjawab soalan anda dengan bahasa yang mudah.</p></article>
+    </div>
+  </div>
+</section>
+
+<section id="soalan">
+  <div class="wrap">
+    <div class="head"><h2 data-en="Frequently Asked Questions">Soalan Lazim</h2></div>
+    <div class="faq">
+      <details>
+        <summary data-en="How long does the process take?">Berapa lama proses permohonan?</summary>
+        <p data-en="Applications are processed within 24 hours on working days, once your documents are complete. All loans are subject to assessment and approval.">Permohonan diproses dalam masa 24 jam pada hari bekerja, setelah dokumen anda lengkap. Semua pinjaman tertakluk kepada penilaian dan kelulusan.</p>
+      </details>
+      <details>
+        <summary data-en="How much can I borrow?">Berapa jumlah yang boleh dipinjam?</summary>
+        <p data-en="From RM 1,000 to RM 30,000, subject to assessment.">Dari RM 1,000 hingga RM 30,000, tertakluk kepada penilaian.</p>
+      </details>
+      <details>
+        <summary data-en="How do I know this company is really licensed?">Bagaimana saya tahu syarikat ini benar-benar berlesen?</summary>
+        <p data-en="See the licence number at the bottom of this page, then check through the i-Kredikom app or contact KPKT.">Lihat nombor lesen di bahagian bawah laman ini, kemudian semak melalui aplikasi i-Kredikom atau hubungi KPKT.</p>
+      </details>
+      <details>
+        <summary data-en="Do I need to pay anything first?">Adakah saya perlu membuat bayaran dahulu?</summary>
+        <p data-en="No. Licensed moneylenders may not charge an upfront fee. If anyone using our name asks for one, do not pay and contact us.">Tidak. Pemberi pinjam berlesen tidak boleh mengenakan bayaran pendahuluan. Jika ada pihak menggunakan nama kami dan memintanya, jangan bayar dan hubungi kami.</p>
+      </details>
+      <details>
+        <summary data-en="Can I repay early?">Bolehkah saya bayar awal?</summary>
+        <p data-en="Yes, you can make early repayment without any penalty.">Ya, anda boleh membuat bayaran awal tanpa sebarang penalti.</p>
+      </details>
+    </div>
+  </div>
+</section>
+
+<section id="hubungi" class="soft">
+  <div class="wrap">
+    <div class="head">
+      <h2 data-en="Contact Us">Hubungi Kami</h2>
+      <p data-en="We are ready to help you">Kami sedia membantu anda</p>
+    </div>
+    <div class="contact">
+      <div>
+        <a class="cc wa" data-wa href="#"><svg class="i"><use href="#chat"/></svg><div><b>WhatsApp</b><span>011-6429 4060</span></div></a>
+        <a class="cc mail" href="mailto:komunitiutamasb@gmail.com"><svg class="i"><use href="#mail"/></svg><div><b data-en="Email">Emel</b><span>komunitiutamasb@gmail.com</span></div></a>
+        <div class="cc plain"><svg class="i"><use href="#pin"/></svg><div><b data-en="Address">Alamat</b><span>No. 7-1, Jalan 1B, Taman Jati, 48000 Rawang, Selangor</span></div></div>
+        <div class="cc plain"><svg class="i"><use href="#clock"/></svg><div style="flex:1"><b data-en="Opening hours">Waktu Operasi</b>
+          <div class="hours">
+            <div><span data-en="Mon - Fri">Isnin - Jumaat</span>9:00 AM - 5:30 PM</div>
+            <div><span data-en="Saturday">Sabtu</span>9:00 AM - 2:30 PM</div>
+            <div><span data-en="Sunday">Ahad</span>TUTUP</div>
+          </div></div></div>
+      </div>
+      <div class="map">
+        <h3 data-en="Our Location">Lokasi Kami</h3>
+        <div class="map-body">
+          <iframe src="https://www.google.com/maps?q=Komuniti+Utama+Sdn+Bhd,+No.+7-1,+Jalan+1B,+Taman+Jati,+48000+Rawang,+Selangor&amp;output=embed" title="Peta lokasi Komuniti Utama Sdn Bhd" loading="lazy" referrerpolicy="no-referrer-when-downgrade"></iframe>
+          <a class="btn btn-outline" href="https://www.google.com/maps?vet=10CAAQoqAOahcKEwiomvmi-PKXAxUAAAAAHQAAAAAQFw..i&amp;rlz=1C1GCEA_enMY1182MY1182&amp;udm&amp;fvr=1&amp;pvq=Cg0vZy8xMW1jbjF6eHloIhwKFmtvbXVuaXRpIHV0YW1hIHNkbiBiaGQQAhgD&amp;lqi=ChZrb211bml0aSB1dGFtYSBzZG4gYmhkWiQiFmtvbXVuaXRpIHV0YW1hIHNkbiBiaGQqCggCEAAQARACEAOSARVmaW5hbmNpYWxfaW5zdGl0dXRpb24&amp;cs=0&amp;um=1&amp;ie=UTF-8&amp;fb=1&amp;gl=my&amp;sa=X&amp;ftid=0x31cc436e00dac011:0xfd2e15fc563bb97d" target="_blank" rel="noopener" data-en="Get directions">Dapatkan Arah</a>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+</main>
+
+<footer>
+  <div class="wrap">
+    <div class="f-grid">
+      <div>
+        <h3>KOMUNITI UTAMA SDN BHD</h3>
+        <p style="margin:0" data-en="Licensed moneylender under the Moneylenders Act 1951 (Act 400).">Pemberi pinjam wang berlesen di bawah Akta Pemberi Pinjam Wang 1951 (Akta 400).</p>
+        <div class="socials" id="socials">
+          <h3 data-en="Follow Us">Ikuti Kami</h3>
+          <div>
+            <a class="f-fb" data-social="facebook" href="#" aria-label="Facebook"><svg class="i"><use href="#facebook"/></svg></a>
+            <a class="f-ig" data-social="instagram" href="#" aria-label="Instagram"><svg class="i"><use href="#instagram"/></svg></a>
+            <a class="f-tt" data-social="tiktok" href="#" aria-label="TikTok"><svg class="i"><use href="#tiktok"/></svg></a>
+          </div>
+        </div>
+      </div>
+      <div>
+        <h3 data-en="Quick Links">Pautan Pantas</h3>
+        <ul>
+          <li><a href="#perkhidmatan" data-en="Services">Perkhidmatan</a></li>
+          <li><a href="#syarat" data-en="Requirements">Syarat</a></li>
+          <li><a href="#soalan" data-en="FAQ">Soalan Lazim</a></li>
+          <li><a href="privasi.html" data-en="Privacy Notice">Notis Privasi</a></li>
+        </ul>
+      </div>
+      <div>
+        <h3 data-en="Company Information">Maklumat Syarikat</h3>
+        <dl>
+          <dt data-en="KPKT licence">Lesen KPKT</dt><dd>WL7352/10/01-4/270228</dd>
+          <dt data-en="Ad permit">Permit iklan</dt><dd>WL7352/10/01-4/270228</dd>        </dl>
+      </div>
+    </div>
+    <p class="warn" data-en="Warning: licensed moneylenders may not charge an upfront fee. Borrow only if you can afford to repay. All loans are subject to assessment and approval.">Amaran: pemberi pinjam wang berlesen tidak dibenarkan mengenakan bayaran pendahuluan. Pinjam hanya jika anda mampu membayar balik. Semua pinjaman tertakluk kepada penilaian dan kelulusan.</p>
+    <p class="copy">&copy; 2026 Komuniti Utama Sdn Bhd. <span data-en="All rights reserved.">Hak Cipta Terpelihara.</span></p>
+  </div>
+</footer>
+
+<div class="floats">
+  <a class="float f-tt" data-social="tiktok" href="#" aria-label="TikTok"><svg class="i"><use href="#tiktok"/></svg></a>
+  <a class="float f-ig" data-social="instagram" href="#" aria-label="Instagram"><svg class="i"><use href="#instagram"/></svg></a>
+  <a class="float f-fb" data-social="facebook" href="#" aria-label="Facebook"><svg class="i"><use href="#facebook"/></svg></a>
+  <a class="float f-wa" data-wa href="#" aria-label="WhatsApp"><svg class="i"><use href="#chat"/></svg></a>
+</div>
+
+<script>
+(function(){
+  /* EDIT HERE: WhatsApp number in international format, e.g. 60123456789 */
+  var WHATSAPP='601164294060';
+  var AMOUNT_MIN=1000, AMOUNT_MAX=30000, AMOUNT_STEP=1000;
+
+  var ready=WHATSAPP.indexOf('GANTI')!==0;
+  var KEY='ku-lang', lang='ms';
+  var TITLE={ms:'Pinjaman Peribadi Berlesen | Komuniti Utama',en:'Licensed Personal Loans | Komuniti Utama'};
+
+  var sel=document.getElementById('jumlah');
+  for(var a=AMOUNT_MIN;a<=AMOUNT_MAX;a+=AMOUNT_STEP){
+    var o=document.createElement('option');
+    o.textContent='RM '+a.toLocaleString('en-US');
+    sel.appendChild(o);
+  }
+
+  var els=document.querySelectorAll('[data-en]');
+  var btns=document.querySelectorAll('.lang button');
+  els.forEach(function(e){e.setAttribute('data-ms',e.innerHTML);});
+  function set(l){
+    lang=l;
+    els.forEach(function(e){e.innerHTML=e.getAttribute(l==='en'?'data-en':'data-ms');});
+    document.documentElement.lang=l;
+    document.title=TITLE[l];
+    btns.forEach(function(b){b.setAttribute('aria-pressed',String(b.getAttribute('data-l')===l));});
+    try{localStorage.setItem(KEY,l);}catch(x){}
+  }
+  btns.forEach(function(b){b.addEventListener('click',function(){set(b.getAttribute('data-l'));});});
+  var saved='ms';
+  try{saved=localStorage.getItem(KEY)||'ms';}catch(x){}
+  if(saved==='en'){set('en');}
+
+  document.querySelectorAll('[data-wa]').forEach(function(a){
+    if(ready){a.href='https://wa.me/'+WHATSAPP;a.target='_blank';a.rel='noopener';}
+    else{a.href='#hubungi';}
+  });
+
+  /* EDIT HERE: profile links. A button with no link is hidden on the live site. */
+  var SOCIAL={facebook:'https://www.facebook.com/profile.php?id=61595942853357',instagram:'https://www.instagram.com/komuniti_utama_sb/',tiktok:'https://www.tiktok.com/@komuniti_utama_sb'};
+  var isLocal=/^(localhost|127\.0\.0\.1)$/.test(location.hostname);
+  document.querySelectorAll('[data-social]').forEach(function(a){
+    var url=SOCIAL[a.getAttribute('data-social')];
+    if(url){a.href=url;a.target='_blank';a.rel='noopener';}
+    else if(isLocal){a.href='#hubungi';}
+    else{a.parentNode.removeChild(a);}
+  });
+  var socials=document.getElementById('socials');
+  if(!socials.querySelector('a')){socials.parentNode.removeChild(socials);}
+
+  var menu=document.querySelector('.menu-btn'), nav=document.getElementById('nav');
+  menu.addEventListener('click',function(){
+    var open=nav.classList.toggle('open');
+    menu.setAttribute('aria-expanded',String(open));
+  });
+  nav.addEventListener('click',function(){nav.classList.remove('open');menu.setAttribute('aria-expanded','false');});
+
+  if('IntersectionObserver' in window && !matchMedia('(prefers-reduced-motion:reduce)').matches){
+    var items=document.querySelectorAll('main section .head,.grid3>*,.steps>li,.feat,details,.cc,.map,form');
+    document.documentElement.classList.add('js-reveal');
+    var io=new IntersectionObserver(function(es){
+      es.forEach(function(e){if(e.isIntersecting){e.target.classList.add('in');io.unobserve(e.target);}});
+    },{rootMargin:'0px 0px -6% 0px'});
+    items.forEach(function(e){e.classList.add('rv');io.observe(e);});
+  }
+
+  var form=document.getElementById('apply-form'), status=document.getElementById('status');
+  form.addEventListener('submit',function(ev){
+    ev.preventDefault();
+    var f=form.elements;
+    var msg='Salam, saya ingin memohon pinjaman.\n'
+      +'Nama: '+f.nama.value.trim()+'\n'
+      +'No. Telefon: '+f.telefon.value.trim()+'\n'
+      +'Pekerjaan: '+f.pekerjaan.value+'\n'
+      +'Negeri: '+f.negeri.value+'\n'
+      +'Jumlah: '+f.jumlah.value;
+    if(!ready){
+      status.textContent=(lang==='en'?'Draft: WhatsApp number not set yet. This message would be sent:\n':'Draf: nombor WhatsApp belum ditetapkan. Mesej ini akan dihantar:\n')+msg;
+      return;
+    }
+    status.textContent='';
+    window.open('https://wa.me/'+WHATSAPP+'?text='+encodeURIComponent(msg),'_blank','noopener');
+  });
+})();
+</script>
+</body>
+</html>
